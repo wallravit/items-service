@@ -1,3 +1,12 @@
-.python-version
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.env
+
+# Virtual environments
+venv/
+env/
+
+# Sqlite
 *.db
-**/__pycache__/**
