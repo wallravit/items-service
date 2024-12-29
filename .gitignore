@@ -10,3 +10,5 @@ env/
 
 # Sqlite
 *.db
+.coverage
+.DS_Store
