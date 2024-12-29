@@ -4,17 +4,6 @@ import pytest
 from httpx import AsyncClient
 from items_api.main import app
 
-from items_api.config import settings
-settings.DATABASE_URL = "sqlite+aiosqlite:///:memory:"
-
-from items_api.store.sqlite import AsyncSessionLocal, init_db
-
-async def get_test_db():
-    async with AsyncSessionLocal() as session:
-        yield session
-
-app.dependency_overrides[init_db] = get_test_db
-
 @pytest.mark.asyncio
 async def test_create_item():
     async with AsyncClient(app=app, base_url="http://test") as ac:
