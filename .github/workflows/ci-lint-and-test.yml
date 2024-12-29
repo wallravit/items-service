@@ -27,7 +27,7 @@ jobs:
 
     - name: Running tests with pytest and checking coverage
       run: |
-        pytest --cov=. --cov-report=xml --cov-report=html --cov-fail-under=75
+        pytest --cov=items_api --cov-report=xml --cov-report=html --cov-fail-under=75 tests/
 
     - name: Upload coverage report
       if: always()
