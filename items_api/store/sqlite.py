@@ -1,9 +1,13 @@
+"""
+This module configures the database connection and session management for the application.
+It includes setup for an SQLite database with SQLAlchemy and asynchronous capabilities.
+"""
+
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
+from items_api.config import settings
 
-DATABASE_URL = "sqlite+aiosqlite:///./items.db"
-
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(settings.DATABASE_URL, echo=True)
 AsyncSessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
 Base = declarative_base()
