@@ -4,7 +4,6 @@ import pytest
 from fastapi.testclient import TestClient
 from items_api.main import app
 from items_api.store.sqlite import init_db
-import asyncio
 
 # Mock database initialization
 @pytest.fixture(autouse=True)
