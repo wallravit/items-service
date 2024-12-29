@@ -5,16 +5,13 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.11
 
     - name: Install dependencies
       run: |
@@ -27,7 +24,11 @@ jobs:
 
     - name: Running tests with pytest and checking coverage
       run: |
+        export DATABASE_URL=sqlite:///test.db
         pytest --cov=items_api --cov-report=xml --cov-report=html --cov-fail-under=75 tests/
+
+    - name: Clean up SQLite file
+      run: rm -f test.db
 
     - name: Upload coverage report
       if: always()
