@@ -24,11 +24,9 @@ jobs:
 
     - name: Running tests with pytest and checking coverage
       run: |
-        export DATABASE_URL=sqlite+aiosqlite:///test.db
+        export DATABASE_URL=sqlite+aiosqlite:///tests/items.db
         pytest --cov=items_api --cov-report=xml --cov-report=html --cov-fail-under=75 tests/
 
-    - name: Clean up SQLite file
-      run: rm -f test.db
 
     - name: Upload coverage report
       if: always()
